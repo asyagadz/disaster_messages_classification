@@ -24,7 +24,7 @@ The project contains the following folders and files:
 | |- disaster_categories.csv  # data to process 
 | |- disaster_messages.csv  # data to process
 | |- process_data.py        # file to clean and transform the initial data 
-| |- ResponseDisaster.db   # database to save clean data to
+| |- ResponseDisasters.db   # database to save clean data to
 
 | - models
 | |- train_classifier.py # file to build the machine learning pipeline
