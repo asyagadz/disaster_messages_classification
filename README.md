@@ -54,14 +54,22 @@ The project contains the following folders and files:
 
 ### How to run the app
 After cloning this repo, navigate to the directory into it and follow the instructions below:
+
 #### Activate the virtualenv and install dependencies
 source env/bin/activate
+
 pip install -r requirements.txt
+
 #### To run ETL pipeline (Cleans data and stores in database)
+
 python data/process_data.py data/disaster_messages.csv data/disaster_categories.csv data/DisasterResponse.db
+
 #### To run ML pipeline (Trains classifier and saves the model)
+
 python models/train_classifier.py data/DisasterResponse.db
+
 #### To run the webapp
+
 python app/run.py
 
 ### Notebooks folder
