@@ -51,11 +51,25 @@ The project contains the following folders and files:
 - requirements.txt 
 ```
 ## How to Interact with your project/Results
-TBased on the analysis performed, we have seen some interesting information about the AirBNBs in Boston:
 
-- beginning of Autumn is the busiest period for the airBNBs occupancy rates
-- there are neighbourhoods that reveal a capacity for new AirBNBs.
-- a more precise modelling and data mining is necessary to build more robust model, that explains better what affect the prices and its values.
+### How to run the app
+After cloning this repo, navigate to the directory into it and follow the instructions below:
+#### Activate the virtualenv and install dependencies
+source env/bin/activate
+pip install -r requirements.txt
+#### To run ETL pipeline (Cleans data and stores in database)
+python data/process_data.py data/disaster_messages.csv data/disaster_categories.csv data/DisasterResponse.db
+#### To run ML pipeline (Trains classifier and saves the model)
+python models/train_classifier.py data/DisasterResponse.db
+#### To run the webapp
+python app/run.py
+
+### Notebooks folder
+This folder contains the code as it is developed within the notebooks with more robust code for text processing. 
+
+### Model results
+The pipeline I've built uses Linear SVC for multi-label classification to classify a given message to which categories of interest to disasters can be classified. I have used GridSearch with 5 cross-validations to select the best parameters for the Linear SVC. The main evaluation of the model comes from the Classification report, where we can see the precision, recall and f1 for each separate label. For some labels the model scores very good /e.g. category 
+related/, for others there are lower results. We do have some imbalances in the dataset, due to the fact that the different categories are not presented by equal ratios in the dataset. The average result for the dataset is 60%. For better results we need to address the imbalance in the labels, as well as to work additional on the model selection - e.g.trying ensemble tree methods /Adaptive boosting/. 
 
 ## Licensing, Authors, Acknowledgements, etc.
 I have used some of the code from the lectures from the python files.
