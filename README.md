@@ -11,7 +11,8 @@ The purpose of the project is to demonstrate abilities for setting up an ETL pip
 
 ## File Descriptions
 The project contains the following folders and files: 
-
+------------
+```
 - workspace #this folder contains all the files for the web visualisation dashboard
 |- app
 | |- template
@@ -32,8 +33,8 @@ The project contains the following folders and files:
 - notebooks 
 | - 01.01.-ag-initial-analysis-cleaning.ipynb # data cleaning, transformation and EDA of the initial data
 | - 02.01.-ag-data-cleaning.ipynb # the notebook deals with the text processing and text preparation to be transformed into numerical data
-  - 02.02.-ag-data-cleaning-text-preprocessing-spacy.ipynb  # it is a complementary notebook that used spacy library and its nlp pipeline for all text processing tasks; 
-  - 03.01.-ag-model-pipeline.ipynb # this notebook contains the ML pipeline
+| - 02.02.-ag-data-cleaning-text-preprocessing-spacy.ipynb  # it is a complementary notebook that used spacy library and its nlp pipeline for all text processing tasks; 
+| - 03.01.-ag-model-pipeline.ipynb # this notebook contains the ML pipeline
   
 - data
 | - raw data # the raw files
@@ -47,6 +48,8 @@ The project contains the following folders and files:
 
 - README.md
 
+- requirements.txt 
+```
 ## How to Interact with your project/Results
 TBased on the analysis performed, we have seen some interesting information about the AirBNBs in Boston:
 
