@@ -26,11 +26,11 @@ def tokenize(text):
     return clean_tokens
 
 # load data
-engine = create_engine('sqlite:///../data/YourDatabaseName.db')
-df = pd.read_sql_table('YourTableName', engine)
+engine = create_engine('sqlite:///../data/DisasterResponse.db')
+df = pd.read_sql_table('table_message', engine)
 
 # load model
-model = joblib.load("../models/your_model_name.pkl")
+model = joblib.load("../models/classifier.pkl")
 
 
 # index webpage displays cool visuals and receives user input text for model
@@ -42,6 +42,16 @@ def index():
     # TODO: Below is an example - modify to extract data for your own visuals
     genre_counts = df.groupby('genre').count()['message']
     genre_names = list(genre_counts.index)
+    
+    # categorical distribution of the different disasters
+    categories = df.drop(["id", "message", "genre","index"], axis=1)
+    categories_counts = categories.sum().values
+    categories_names = categories.columns.values
+    
+    #messages with multiple categories
+    rowSums = categories.sum(axis=1)
+    multiLabel_counts = rowSums.value_counts()
+    multiLabel_counts = multiLabel_counts.iloc[1:]
     
     # create visuals
     # TODO: Below is an example - modify to create your own visuals
@@ -61,6 +71,42 @@ def index():
                 },
                 'xaxis': {
                     'title': "Genre"
+                }
+            }
+        },
+               {
+            'data': [
+                Bar(
+                    x=categories_names,
+                    y=categories_counts
+                )
+            ],
+
+            'layout': {
+                'title': 'Distribution of Categories',
+                'yaxis': {
+                    'title': "number of messages"
+                },
+                'xaxis': {
+                    'title': "Category"
+                }
+            }
+        },
+             {
+            'data': [
+                Bar(
+                    x=multiLabel_counts.index,
+                    y=multiLabel_counts.values
+                )
+            ],
+
+            'layout': {
+                'title': 'Number of messages with multiple labels',
+                'yaxis': {
+                    'title': "number of messages"
+                },
+                'xaxis': {
+                    'title': "Category"
                 }
             }
         }

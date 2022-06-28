@@ -62,13 +62,21 @@ def tokenize(text):
 
 def build_model():
     #Pipeline 
-    model = Pipeline([
+    pipeline = Pipeline([
         ('vect', CountVectorizer(tokenizer=tokenize)),
         ('tfidf', TfidfTransformer()),
         ('classifier',MultiOutputClassifier(LinearSVC()))
     ])     
 
-    return model
+    param_grid = {
+    # try different feature engineering parameters
+    'classifier__estimator__penalty': ['l2','l1'],
+    'classifier__estimator__C': [1,10,100],
+    }
+
+    grid_search = GridSearchCV(pipeline, param_grid,
+                           cv=5, n_jobs=-1, scoring = 'f1')
+    return grid_search
 
 
 def evaluate_model(model, X_test, Y_test, category_names):
